@@ -4,7 +4,6 @@ import json
 
 # API key used to connect to API Call.
 api_key = '8e30431e1ff6c195669623febad87f2f'
-# api_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
 # API URL used to call public OpenWeatherMap API.
 api_call = 'https://api.openweathermap.org/data/2.5/forecast?appid=' + api_key
@@ -113,15 +112,15 @@ while running:
         print('Farenheit: %.2f' % (temperature * 9 / 5 - 459.67))
 
         # AWS S3 Transfer
-
+        # import logging
         import boto3
+        # from botocore.exceptions import ClientError
         import os
+        import json
 
     AWS_S3_BUCKET = os.getenv("pyweather-data")
     AWS_ACCESS_KEY_ID = os.getenv("AKIARTGTKUKDDOHY6OET")
     AWS_SECRET_ACCESS_KEY = os.getenv("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")
-    # AWS_ACCESS_KEY_ID = os.getenv("XXXXXXXXXXXXXXXXXXXX")
-    # AWS_SECRET_ACCESS_KEY = os.getenv("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 
     s3_client = boto3.client(
         "s3",
@@ -134,3 +133,8 @@ while running:
 
     # Uploads the 'weatherdata.json' to the 'pyweather-data' s3 bucket and saving the file as 'weather_daily_table'
     s3.upload_file('weatherdata.json', 'pyweather-data', 'weather_daily_table.json')
+
+    # Stores the weather_data python dictonary object as JSON in S3 Bucket
+    serializedMyData = json.dumps(weather_data)
+
+    s3.put_object(Bucket='pyweather-data', Key='AKIARTGTKUKDLL22ZV2B')
