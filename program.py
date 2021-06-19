@@ -3,7 +3,7 @@ import json
 
 
 # API key used to connect to API Call.
-api_key = '8e30431e1ff6c195669623febad87f2f'
+api_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
 # API URL used to call public OpenWeatherMap API.
 api_call = 'https://api.openweathermap.org/data/2.5/forecast?appid=' + api_key
@@ -119,8 +119,8 @@ while running:
         import json
 
     AWS_S3_BUCKET = os.getenv("pyweather-data")
-    AWS_ACCESS_KEY_ID = os.getenv("AKIARTGTKUKDDOHY6OET")
-    AWS_SECRET_ACCESS_KEY = os.getenv("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")
+    AWS_ACCESS_KEY_ID = os.getenv("XXXXXXXXXXXXXXXXXXXX")    
+    AWS_SECRET_ACCESS_KEY = os.getenv("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")    
 
     s3_client = boto3.client(
         "s3",
@@ -137,4 +137,4 @@ while running:
     # Stores the weather_data python dictonary object as JSON in S3 Bucket
     serializedMyData = json.dumps(weather_data)
 
-    s3.put_object(Bucket='pyweather-data', Key='AKIARTGTKUKDLL22ZV2B')
+    s3.put_object(Bucket='pyweather-data', Key='XXXXXXXXXXXXXXXXXXXX')
